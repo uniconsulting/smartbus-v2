@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Ошибка сайта — SmartBus</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/system/state.css">
+  <script src="/system/retry.js" defer></script>
+</head>
+<body style="margin:0">
+  <main class="system-state" data-kind="unavailable" aria-labelledby="state-title">
+    <header class="state-header">
+      <a href="/" aria-label="SmartBus — на главную"><img class="state-logo" src="/home/brand/logo.svg" width="230" height="57" alt="SmartBus"></a>
+      <p class="state-code"><!--response-code-->Ошибка сайта</p>
+    </header>
+    <div class="state-content">
+      <h1 class="state-title" id="state-title"><!--response-title-->Страница недоступна</h1>
+      <p class="state-description"><!--response-detail-->Попробуйте открыть страницу ещё раз. Если вам нужна помощь по рейсу, диспетчерская на связи круглосуточно.</p>
+      <div class="state-actions">
+        <button type="button" class="state-button state-button-primary" data-retry>Попробовать снова</button>
+        <a class="state-button" href="/">На главную</a>
+      </div>
+      <p class="state-status" role="status" aria-live="polite"></p>
+      <noscript><p>После восстановления связи <a href="/">перейдите на главную</a>.</p></noscript>
+    </div>
+    <footer class="state-footer">
+      <div class="state-road" aria-hidden="true">
+        <span class="state-vehicle" data-vehicle="coach"><img src="/home/footer/coach.svg" alt=""></span>
+        <span class="state-vehicle" data-vehicle="citybus"><img src="/home/footer/citybus.svg" alt=""></span>
+        <span class="state-vehicle" data-vehicle="shuttle"><img src="/home/footer/shuttle.svg" alt=""></span>
+      </div>
+      <div class="state-dispatch"><span>Диспетчерская · 24/7</span><a data-dispatch data-show-number href="tel:+79268005571">+7 (926) 800-55-71</a></div>
+    </footer>
+  </main>
+</body>
+</html>

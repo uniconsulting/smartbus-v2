@@ -1,0 +1,89 @@
+.filterDefinition { position: absolute; width: 0; height: 0; overflow: hidden; }
+.folder {
+  --body-start: calc(67 * var(--u));
+  --tabs-height: calc(85 * var(--u));
+  --pattern-tile: calc(76 * var(--u));
+  --folder-ease: cubic-bezier(.165,.84,.44,1);
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  color: var(--sb-ink);
+}
+.folder::after {
+  content: "";
+  position: absolute;
+  inset: var(--body-start) 0 0;
+  z-index: -1;
+  border-radius: var(--frame-radius);
+  pointer-events: none;
+  background: url('/home/mobility/mark.svg') right center / var(--pattern-tile) auto repeat;
+  mask-image: linear-gradient(to right, transparent 30%, #0004 60%, #000 100%);
+  filter: brightness(0) invert(1);
+}
+.silhouette { position: absolute; inset: 0; z-index: -1; pointer-events: none; filter: url('#process-folder-goo'); }
+.bodyShape, .tabShape { position: absolute; background: var(--sb-frame); }
+.bodyShape { inset: var(--body-start) 0 0; border-radius: var(--frame-radius); }
+.tabShape { top: 0; left: 0; width: 20%; height: calc(150 * var(--u)); border-radius: calc(44 * var(--u)) calc(44 * var(--u)) 0 0; transition: transform 420ms var(--folder-ease); }
+.tabs { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); height: var(--tabs-height); }
+.tab {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: calc(38 * var(--u));
+  background: transparent;
+  color: #696969;
+  font: 400 calc(28 * var(--u))/1 var(--font-display);
+  transition: color .22s, transform .22s;
+}
+.tab:hover { color: var(--sb-accent); transform: translateY(-2px); }
+.tab[aria-selected='true'] { color: var(--sb-accent); }
+.tab:focus-visible { outline-offset: -6px; }
+.panel { padding: calc(var(--frame-padding) + var(--body-start) - var(--tabs-height)) var(--frame-padding) var(--frame-padding); }
+.panelContent { position: relative; min-height: calc(344 * var(--u)); display: flex; flex-direction: column; justify-content: flex-end; animation: panel-enter 380ms var(--folder-ease) both; }
+/* The keyed panel owns its entrance; replacing/unmounting it cancels the animation.
+   Native transitions retarget the silhouette from its current position on rapid input. */
+@keyframes panel-enter {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.number { display: block; margin: -.0675em 0 auto -.04em; font: 400 calc(130 * var(--u))/1 var(--font-display); color: #c7bdce; }
+
+
+.panel h3 { margin: calc(28 * var(--u)) 0 calc(12 * var(--u)); font-size: calc(32 * var(--u)); line-height: 1.2; }
+.panel p { max-width: 46ch; margin: 0; font-size: calc(22 * var(--u)); line-height: 1.38; }
+@media (max-width: 1279px) {
+  .folder { --tabs-height: 55px; --body-start: 43px; --pattern-tile: 48px; }
+  .folder::after { mask-image: linear-gradient(to right, transparent 38%, #0002 63%, #000 100%); }
+  .tab { font-size: 18px; }
+  .tabShape { height: 82px; border-radius: 20px 20px 0 0; }
+  .panel { padding-block: max(10px, calc(var(--frame-padding) + var(--body-start) - var(--tabs-height))) var(--frame-padding); }
+  .panelContent { min-height: 232px; }
+  .number { font-size: 80px; }
+
+  .panel h3 { margin: 20px 0 12px; font-size: 22px; }
+  .panel p { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tab, .tabShape { transition: none; }
+  .panelContent { animation: none; }
+}
+
+@media (min-width: 701px) and (max-width: 1279px) {
+  .folder {
+    --tabs-height: calc(55px + .03448 * var(--tablet-growth));
+    --body-start: calc(43px + .028 * var(--tablet-growth));
+    --pattern-tile: calc(48px + .035 * var(--tablet-growth));
+  }
+  .tab { font-size: calc(18px + .00862 * var(--tablet-growth)); }
+  .tabShape { height: calc(82px + .09 * var(--tablet-growth)); border-radius: calc(20px + .031 * var(--tablet-growth)) calc(20px + .031 * var(--tablet-growth)) 0 0; }
+  .panelContent { min-height: calc(232px + .12 * var(--tablet-growth)); }
+  .number { font-size: calc(80px + .05 * var(--tablet-growth)); }
+  .panel h3 { font-size: calc(22px + .01034 * var(--tablet-growth)); }
+  .panel p { font-size: calc(16px + .00345 * var(--tablet-growth)); }
+}
+@media (max-width: 1279px) and (hover: none) {
+  .tab:hover { transform: none; }
+}

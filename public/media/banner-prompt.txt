@@ -1,0 +1,11 @@
+Use case: ads-marketing
+Asset type: wide photographic CTA background banner for a Russian corporate passenger transportation website, 1600x560 canvas, aspect ratio approximately 2.86:1.
+Primary request: Create a cinematic photographic fleet scene for SmartBus, a concept visualization, no actual company marks.
+Input images: Image 1 is a visual style reference only. Match the professional photographic atmosphere of the wide vehicle CTA banner near the bottom of the supplied website reference. Do not reproduce its website UI or cargo subjects.
+Scene/backdrop: A contemporary business campus exterior with restrained glass office buildings and a clean paved pickup lane at twilight.
+Subject: One white modern touring passenger coach and one white premium passenger minibus, realistic proportions, large coach windows and passenger doors. Vehicles concentrated in the right half of the panorama, facing slightly toward the viewer.
+Style/medium: Premium cinematic advertising photography, lifelike vehicle details, natural perspective and high image clarity.
+Composition/framing: Wide horizontal 1600x560 composition. The entire left 45 percent is darker, uncluttered pavement and subdued campus background suitable for large white headline copy later in code. Keep both vehicles readable and contained in right 55 percent.
+Lighting/mood: Blue hour twilight, subtle warm interior vehicle lights, soft deep purple reflections on pavement and glass, calm reliable professional mood.
+Color palette: White vehicles, charcoal shadows, restrained deep corporate purple accents, no vivid orange.
+Constraints: Deliver only the photographic background image with no lettering, no logos, no UI, no watermark, no cargo trucks, no airplanes, no train, no cargo containers. This is a concept visualization rather than an image of the real company fleet.

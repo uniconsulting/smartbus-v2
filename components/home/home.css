@@ -1,0 +1,104 @@
+body:has(.sb-home) { font-family: var(--font-garet), Arial, sans-serif; }
+
+.sb-home {
+  --u: clamp(.48px, .0694444444vw, 2.666667px);
+  --sb-bg: #fff;
+  --sb-ink: #0e0e0e;
+  --sb-frame: #ebebeb;
+  --sb-accent: #673a8e;
+  --sb-dark: #323232;
+  --sb-muted: #767676;
+  --font-display: var(--font-bicubik), Arial, sans-serif;
+  --font-body: var(--font-garet), Arial, sans-serif;
+  --frame-radius: calc(72 * var(--u));
+  --frame-padding: calc(58 * var(--u));
+  --page-inset: calc(40 * var(--u));
+  --section-gap: calc(112 * var(--u));
+  --hero-edge: min(var(--page-inset), 6vh);
+  --hero-unit: min(var(--u), calc((100vh - 2 * var(--hero-edge)) / 700));
+  display: flow-root;
+  padding-block: var(--hero-edge) 0;
+  background: var(--sb-bg);
+  color: var(--sb-ink);
+  font: 400 calc(20 * var(--u))/1.38 var(--font-body);
+}
+@supports (height: 100dvh) {
+  .sb-home {
+    --hero-edge: min(var(--page-inset), 6dvh);
+    --hero-unit: min(var(--u), calc((100dvh - 2 * var(--hero-edge)) / 700));
+  }
+}
+.sb-home :where(h1,h2,h3,p,ul,ol) { margin: 0; }
+.sb-home :where(h1,h2) {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(46 * var(--u));
+  line-height: 1.09;
+}
+.sb-home :where(a,button,input,textarea,summary):focus-visible {
+  outline: max(2px, calc(2 * var(--u))) solid currentColor;
+  outline-offset: max(2px, calc(4 * var(--u)));
+}
+.sb-section {
+  width: min(calc(100% - 2 * var(--page-inset)), calc(1360 * var(--u)));
+  margin-inline: auto;
+  scroll-margin-top: calc(24 * var(--u));
+}
+.sb-home .sb-section ~ .sb-section { margin-top: var(--section-gap); }
+.sb-frame { border-radius: var(--frame-radius); }
+.sb-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: calc(28 * var(--u));
+  padding-inline: var(--frame-padding);
+  margin-bottom: calc(52 * var(--u));
+}
+.sb-heading h2 { text-transform: uppercase; }
+.sb-heading p {
+  max-width: 48%;
+  text-align: right;
+  font-size: calc(22 * var(--u));
+  line-height: 1.36;
+  color: var(--sb-muted);
+}
+/* Compact layouts use readable type instead of shrinking the desktop unit.
+   Component grids reflow independently within this range. */
+@media (max-width: 1279px) {
+  .sb-home {
+    --u: 1px;
+    --page-inset: clamp(12px, 3.4vw, 20px);
+    --frame-radius: 32px;
+    --frame-padding: clamp(18px, 5vw, 30px);
+    --section-gap: 66px;
+    padding-block: 12px 0;
+    font-size: 16px;
+  }
+  .sb-home :where(h1,h2) { font-size: clamp(25px, 6.3vw, 36px); line-height: 1.15; }
+  .sb-heading { display: grid; gap: 15px; padding-inline: var(--frame-padding); margin-bottom: 24px; }
+  .sb-heading p { font-size: 15px; max-width: 38ch; text-align: left; }
+  .sb-heading p br { display: none; }
+}
+
+/* The tablet rhythm starts at the exact 700px compact values and approaches
+   the existing 1280px desktop tokens. The approved desktop rules stay intact. */
+@media (min-width: 701px) and (max-width: 1279px) {
+  .sb-home {
+    --tablet-growth: clamp(0px, calc(100vw - 700px), 580px);
+    --page-inset: calc(20px + var(--tablet-growth) * .02682);
+    --frame-radius: calc(32px + var(--tablet-growth) * .05517);
+    --frame-padding: calc(30px + var(--tablet-growth) * .03716);
+    --section-gap: calc(66px + var(--tablet-growth) * .05786);
+    padding-top: calc(12px + var(--tablet-growth) * .04061);
+    font-size: calc(16px + var(--tablet-growth) * .00307);
+  }
+  .sb-home :where(h1,h2) { font-size: calc(36px + var(--tablet-growth) * .00843); }
+  .sb-heading {
+    gap: 15px;
+    margin-bottom: calc(24px + var(--tablet-growth) * .03831);
+  }
+  .sb-heading p {
+    max-width: calc(38ch + var(--tablet-growth) * .06897);
+    font-size: calc(15px + var(--tablet-growth) * .00785);
+  }
+}

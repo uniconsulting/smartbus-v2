@@ -1,0 +1,9 @@
+.title { cursor: pointer; }
+.line { display: block; }
+.accent { color: #ded0ed; }
+.word { display: inline-block; white-space: nowrap; }
+.letter { display: inline-block; transition: font-variation-settings .5s cubic-bezier(.2,.8,.2,1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .letter { font-variation-settings: 'wght' 400, 'slnt' 0 !important; transition: none; }
+}

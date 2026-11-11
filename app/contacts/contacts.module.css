@@ -1,0 +1,105 @@
+.contacts h1 { text-transform: uppercase; }
+.phoneGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(20 * var(--u)); }
+.phoneCard { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; padding: var(--frame-padding); border-radius: var(--frame-radius); background: var(--sb-frame); }
+.cardHeading { display: flex; align-items: center; justify-content: space-between; gap: calc(20 * var(--u)); width: 100%; min-height: calc(34 * var(--u)); margin-bottom: calc(28 * var(--u)); }
+.cardHeading h2, .emailSection .groupTitle { font: 600 calc(24 * var(--u))/1.3 var(--font-body); }
+.roundTheClock { flex: none; color: var(--sb-accent); font: 400 calc(28 * var(--u))/1 var(--font-display); }
+.phoneNumber { display: inline-flex; align-items: center; min-height: max(44px, calc(54 * var(--u))); max-width: 100%; font-size: calc(36 * var(--u)); font-weight: 500; line-height: 1.2; white-space: nowrap; letter-spacing: -.025em; }
+.phoneNote { margin-top: calc(12 * var(--u)) !important; margin-bottom: calc(32 * var(--u)) !important; color: #5d5d5d; font-size: calc(18 * var(--u)); line-height: 1.5; }
+.cardBottom { display: flex; align-items: center; width: 100%; min-height: max(64px, calc(76 * var(--u))); margin-top: auto; padding-top: calc(20 * var(--u)); border-top: 1px solid #cecece; }
+.textLink, .routeLink { display: inline-flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); min-height: max(44px, calc(48 * var(--u))); color: var(--sb-accent); font-weight: 600; }
+.textLink svg, .routeLink svg { flex: none; width: 1.15em; height: 1.15em; }
+.shortNumberRow { gap: calc(22 * var(--u)); }
+.shortNumber { display: inline-flex; align-items: center; flex: none; min-height: 44px; color: var(--sb-accent); font-size: calc(28 * var(--u)); font-weight: 600; }
+.shortNumberCopy { display: grid; gap: calc(3 * var(--u)); font-size: calc(15 * var(--u)); line-height: 1.4; }
+.shortNumberCopy span:last-child { color: #5d5d5d; }
+.emailSection { margin-top: calc(48 * var(--u)); }
+.emailSection .groupTitle { padding-inline: var(--frame-padding); }
+.emailGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: calc(28 * var(--u)) !important; padding: 0; list-style: none; }
+.emailChannel { min-width: 0; padding: calc(12 * var(--u)) var(--frame-padding); }
+.emailChannel + .emailChannel { border-left: 1px solid #d8d8d8; }
+.emailChannel h3 { font-size: calc(18 * var(--u)); font-weight: 500; line-height: 1.4; }
+.emailValue { display: inline-flex; align-items: center; min-height: max(44px, calc(56 * var(--u))); max-width: 100%; color: var(--sb-accent); font-size: calc(28 * var(--u)); font-weight: 500; line-height: 1.2; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.emailChannel p { color: #5d5d5d; font-size: calc(16 * var(--u)); line-height: 1.45; }
+.officeFrame { padding-bottom: var(--frame-padding); border-radius: var(--frame-radius); background: var(--sb-frame); }
+.addressStrip { display: flex; justify-content: space-between; align-items: center; gap: calc(48 * var(--u)); padding: calc(34 * var(--u)) var(--frame-padding); }
+.addressStrip address { max-width: 43ch; font-style: normal; font-size: calc(22 * var(--u)); line-height: 1.5; }
+.routeLink { flex: none; text-align: center; }
+.mapViewport { position: relative; height: calc(470 * var(--u)); min-height: 300px; margin-inline: var(--frame-padding); overflow: hidden; border-radius: max(0px, calc(var(--frame-radius) - var(--frame-padding))); background: #fff; }
+.constructorMap { display: block; width: 100%; height: 100%; border: 0; }
+.mapConsent, .mapLoading { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; padding: calc(36 * var(--u)); background: #fff; text-align: center; }
+.mapConsent strong { font-size: calc(26 * var(--u)); font-weight: 500; line-height: 1.3; }
+.mapConsent p { max-width: 42ch; margin-block: calc(16 * var(--u)) calc(24 * var(--u)); color: #5d5d5d; font-size: calc(18 * var(--u)); line-height: 1.5; }
+.mapConsent button { min-height: max(44px, calc(50 * var(--u))); padding: calc(10 * var(--u)) calc(24 * var(--u)); border: 0; border-radius: calc(16 * var(--u)); background: var(--sb-accent); color: #fff; font-size: calc(18 * var(--u)); font-weight: 500; transition: background .3s ease; }
+.mapLoading { position: absolute; inset: 0; color: #5d5d5d; pointer-events: none; }
+.phoneNumber, .shortNumber, .emailValue, .textLink, .routeLink { text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: .22em; transition: color .3s ease, text-decoration-color .3s ease; }
+@media (hover: hover) {
+  .phoneNumber:hover { color: var(--sb-accent); }
+  .phoneNumber:hover, .shortNumber:hover, .emailValue:hover, .textLink:hover, .routeLink:hover { text-decoration-color: currentColor; }
+  .mapConsent button:hover { background: #543073; }
+}
+@media (max-width: 1279px) {
+  .phoneGrid { gap: 16px; }
+  .cardHeading { min-height: 30px; margin-bottom: 20px; gap: 12px; }
+  .cardHeading h2, .emailSection .groupTitle { font-size: 20px; }
+  .roundTheClock { font-size: 24px; }
+  .phoneNumber { font-size: 28px; min-height: 44px; }
+  .phoneNote { margin-top: 8px !important; margin-bottom: 24px !important; font-size: 16px; }
+  .cardBottom { min-height: 64px; padding-top: 16px; }
+  .shortNumber { font-size: 25px; }
+  .shortNumberRow { gap: 14px; }
+  .shortNumberCopy { font-size: 14px; }
+  .emailSection { margin-top: 36px; }
+  .emailGrid { margin-top: 24px !important; }
+  .emailChannel { padding-block: 8px; }
+  .emailChannel h3 { font-size: 16px; }
+  .emailValue { font-size: 24px; min-height: 48px; }
+  .emailChannel p { font-size: 15px; }
+  .addressStrip { gap: 24px; padding-block: 28px; }
+  .addressStrip address { font-size: 18px; }
+  .mapViewport { height: 430px; }
+  .mapConsent { padding: 28px; }
+  .mapConsent strong { font-size: 23px; }
+  .mapConsent p { margin-block: 14px 22px; font-size: 16px; }
+  .mapConsent button { font-size: 16px; border-radius: 14px; }
+}
+@media (min-width: 701px) and (max-width: 1000px) {
+  .phoneCard { padding-inline: var(--frame-padding); }
+  .phoneNumber { font-size: calc(24px + min(2px, var(--tablet-growth) * .02941)); }
+  .cardHeading { align-items: flex-start; }
+  .cardHeading h2 { font-size: 19px; }
+  .roundTheClock { font-size: 21px; }
+  .shortNumberRow { align-items: flex-start; }
+  .shortNumberCopy { padding-block: 4px; }
+  .emailChannel { padding-inline: 26px; }
+  .emailValue { font-size: 21px; }
+  .emailChannel h3 { font-size: 15px; }
+  .addressStrip { flex-wrap: wrap; gap: 12px; }
+  .addressStrip address { max-width: none; }
+}
+@media (max-width: 700px) {
+  .phoneGrid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .phoneCard { padding-block: 26px; }
+  .cardHeading { margin-bottom: 16px; }
+  .cardHeading h2, .emailSection .groupTitle { font-size: 20px; }
+  .phoneNumber { font-size: clamp(24px, 6.25vw, 32px); }
+  .phoneNote { max-width: 30ch; }
+  .shortNumberCopy { max-width: 30ch; font-size: 13px; }
+  .emailGrid { grid-template-columns: minmax(0, 1fr); }
+  .emailChannel { padding: 20px var(--frame-padding); }
+  .emailChannel:first-child { padding-top: 0; }
+  .emailChannel:last-child { padding-bottom: 0; }
+  .emailChannel + .emailChannel { border-left: 0; border-top: 1px solid #d8d8d8; }
+  .emailValue { font-size: 25px; }
+  .emailChannel p { max-width: 31ch; }
+  .addressStrip { flex-direction: column; align-items: flex-start; gap: 12px; padding-block: 24px 16px; }
+  .addressStrip address { font-size: 16px; }
+  .routeLink { justify-content: flex-start; font-size: 16px; }
+  .mapViewport { height: 370px; }
+  .mapConsent { padding: 22px 18px; }
+  .mapConsent strong { font-size: 22px; }
+  .mapConsent p { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phoneNumber, .shortNumber, .emailValue, .textLink, .routeLink, .mapConsent button { transition: none; }
+}

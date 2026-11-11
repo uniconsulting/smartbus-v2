@@ -1,0 +1,150 @@
+.sb-home .sb-metrics {
+  --metric-control: max(36px, calc(var(--u) * 56));
+  --metric-clearance: max(5px, calc(var(--u) * 10));
+  --metric-height: calc(var(--u) * 178);
+  position: relative;
+  width: calc(var(--u) * 524);
+  color: #fff;
+}
+
+.sb-metric-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--u) * 22);
+}
+.sb-metric {
+  position: relative;
+  height: var(--metric-height);
+  overflow: hidden;
+  border-radius: calc(var(--u) * 20);
+}
+.sb-metric::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--sb-accent);
+  content: "";
+}
+.sb-metric:nth-child(2) {
+  --cutout: calc(var(--metric-control) / 2 + var(--metric-clearance));
+  mask-image: radial-gradient(circle at right center, transparent calc(var(--cutout) - .5px), black calc(var(--cutout) + .5px));
+}
+.sb-metric:nth-child(2)::before {
+  background: rgb(23 22 28 / 24%);
+  box-shadow: inset 0 0 0 max(2px, calc(var(--u) * 3.5)) currentColor;
+}
+
+.sb-metric-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--u) * 25) calc(var(--u) * 27) calc(var(--u) * 27);
+  opacity: 0;
+  transition: opacity 220ms cubic-bezier(.4,0,.6,1);
+}
+.sb-metric-content[data-active="true"] {
+  opacity: 1;
+  transition: opacity 440ms cubic-bezier(.2,.65,.25,1) 180ms;
+}
+.sb-metric-content strong {
+  font: 400 calc(var(--u) * 46)/1.05 var(--font-display);
+}
+.sb-metric-content > span {
+  font-size: calc(var(--u) * 22);
+  line-height: 1.22;
+}
+
+/* Real glyphs reserve the final width and are the default before hydration,
+   without scripting, after settling, and with reduced motion. Each reel makes a
+   continuous pass instead of repainting a sequence of whole integer values. */
+.sb-count-digits { position: relative; display: inline-block; white-space: nowrap; }
+.sb-count-digit { position: relative; display: inline-block; }
+.sb-count-window {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, #000 .08em, #000 calc(100% - .08em), transparent);
+}
+.sb-count-reel { display: flex; flex-direction: column; }
+.sb-count-reel > span { display: block; flex: none; height: 1.05em; line-height: 1.05; text-align: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .sb-count-digits[data-count-started]:not([data-count-finished]) .sb-count-final { visibility: hidden; }
+  .sb-count-digits[data-count-started]:not([data-count-finished]) .sb-count-window { visibility: visible; }
+  .sb-count-digits[data-count-started]:not([data-count-finished]) .sb-count-reel {
+    animation: sb-digit-roll var(--sb-count-duration) cubic-bezier(.3,0,.16,1) var(--sb-digit-delay) both;
+  }
+  @keyframes sb-digit-roll {
+    from { transform: translateY(0); }
+    to { transform: translateY(calc(var(--sb-digit-steps) * -1.05em)); }
+  }
+}
+
+.sb-home .sb-metric-next {
+  position: absolute;
+  bottom: calc(var(--metric-height) / 2);
+  right: 0;
+  transform: translate(50%, 50%);
+  width: var(--metric-control);
+  height: var(--metric-control);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  color: var(--sb-accent);
+  transition: background .25s ease;
+}
+.sb-home .sb-metric-next svg {
+  width: 53%;
+  height: 53%;
+  transition: transform .32s cubic-bezier(.2,.7,.22,1);
+}
+.sb-home .sb-metric-next:focus-visible { outline-color: #fff; }
+@media (hover: hover) {
+  .sb-metric-next:hover { background: #f3edf7; }
+  .sb-metric-next:hover svg { transform: translateX(6%); }
+}
+
+@media (max-width: 1279px) {
+  .sb-home .sb-metrics {
+    --metric-control: 40px;
+    --metric-clearance: 6px;
+    --metric-height: clamp(113px, 28vw, 145px);
+    width: min(calc(100% - 12px), 410px);
+    margin-top: auto;
+    padding-top: 36px;
+  }
+  .sb-metric-pair { gap: 8px; }
+  .sb-metric { border-radius: 16px; }
+  .sb-metric:nth-child(2)::before {
+    background: rgb(26 25 32 / 32%);
+    box-shadow: inset 0 0 0 2px currentColor;
+  }
+  .sb-metric-content { padding: 14px clamp(10px, 3.1vw, 18px); }
+  .sb-metric-content strong { font-size: clamp(25px, 7vw, 35px); }
+  .sb-metric-content > span { font-size: clamp(12px, 3vw, 16px); }
+  .sb-metric-next::before { content: ""; position: absolute; inset: -3px; }
+}
+
+@media (min-width: 701px) and (max-width: 1279px) {
+  .sb-home .sb-metrics {
+    --metric-height: calc(145px + .023 * var(--tablet-growth));
+    width: min(calc(100% - 12px), calc(410px + .09655 * var(--tablet-growth)));
+  }
+  .sb-metric-pair { gap: calc(8px + .01034 * var(--tablet-growth)); }
+  .sb-metric { border-radius: calc(16px + .0069 * var(--tablet-growth)); }
+  .sb-metric-content { padding: calc(14px + .00862 * var(--tablet-growth)) calc(18px + .01034 * var(--tablet-growth)); }
+  .sb-metric-content strong { font-size: calc(35px + .01034 * var(--tablet-growth)); }
+  .sb-metric-content > span { font-size: calc(16px + .0069 * var(--tablet-growth)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-home .sb-metric-content,
+  .sb-home .sb-metric-next,
+  .sb-home .sb-metric-next svg { transition: none; }
+}

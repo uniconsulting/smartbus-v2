@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Нет соединения — SmartBus</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/system/state.css">
+  <script src="/system/retry.js" defer></script>
+</head>
+<body style="margin:0">
+  <main class="system-state" data-kind="offline" aria-labelledby="state-title">
+    <header class="state-header">
+      <a href="/" aria-label="SmartBus — на главную"><img class="state-logo" src="/home/brand/logo.svg" width="230" height="57" alt="SmartBus"></a>
+    </header>
+    <div class="state-content">
+      <h1 class="state-title" id="state-title">Нет связи с сайтом</h1>
+      <p class="state-description">Проверьте подключение к интернету. Если вопрос касается поездки, позвоните в круглосуточную диспетчерскую.</p>
+      <div class="state-actions">
+        <button type="button" class="state-button" data-retry>Проверить соединение</button>
+        <a data-dispatch class="state-button state-button-primary" href="tel:+79268005571">Позвонить нам</a>
+      </div>
+      <p class="state-status" role="status" aria-live="polite"></p>
+      <noscript><p>После восстановления связи <a href="/">перейдите на главную</a>.</p></noscript>
+    </div>
+    <footer class="state-footer">
+      <div class="state-road" aria-hidden="true">
+        <span class="state-vehicle" data-vehicle="coach"><img src="/home/footer/coach.svg" alt=""></span>
+        <span class="state-vehicle" data-vehicle="citybus"><img src="/home/footer/citybus.svg" alt=""></span>
+        <span class="state-vehicle" data-vehicle="shuttle"><img src="/home/footer/shuttle.svg" alt=""></span>
+      </div>
+      <div class="state-dispatch"><span>Диспетчерская · 24/7</span><a data-dispatch data-show-number href="tel:+79268005571">+7 (926) 800-55-71</a></div>
+    </footer>
+  </main>
+</body>
+</html>

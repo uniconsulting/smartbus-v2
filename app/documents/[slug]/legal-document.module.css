@@ -1,0 +1,50 @@
+.main {
+  --document-heading-size: calc(46 * var(--u));
+  --document-title-size: calc(25 * var(--u));
+  --document-lead-size: calc(22 * var(--u));
+  --document-reading-size: calc(20 * var(--u));
+  --document-body-size: calc(18 * var(--u));
+  --document-meta-size: calc(14 * var(--u));
+  --document-copy-gap: calc(26 * var(--u));
+  font-family: var(--font-body);
+}
+.heading { padding-inline: var(--frame-padding); }
+.back { display: inline-flex; align-items: center; min-height: 44px; color: var(--sb-accent); font-size: var(--document-body-size); text-decoration: underline; text-underline-offset: .2em; }
+.updated { display: block; margin-top: calc(30 * var(--u)); color: #626262; font-size: var(--document-meta-size); }
+.heading h1 { margin: calc(20 * var(--u)) 0 0; font: 400 var(--document-heading-size)/1.09 var(--font-display); letter-spacing: 0; text-wrap: pretty; overflow-wrap: break-word; }
+.heading p { max-width: 65ch; margin: var(--document-copy-gap) 0 0; color: #626262; font-size: var(--document-lead-size); line-height: 1.4; }
+.layout { display: grid; grid-template-columns: minmax(0,.3fr) minmax(0,.7fr); gap: var(--frame-padding); padding-inline: var(--frame-padding); margin-top: calc(52 * var(--u)); }
+.toc { display: grid; align-self: start; gap: var(--document-copy-gap); position: sticky; top: calc(130 * var(--u)); max-height: calc(100svh - 160 * var(--u)); overflow-y: auto; padding: var(--document-copy-gap) 0; border-top: 2px solid var(--sb-accent); }
+.toc strong { font-size: var(--document-title-size); line-height: 1.22; }
+.toc nav { display: grid; gap: 1em; }
+.toc a { color: #626262; font-size: var(--document-body-size); line-height: 1.45; }
+.toc a:hover { color: var(--sb-accent); text-decoration: underline; text-underline-offset: .2em; }
+.toc small { color: #626262; font-size: var(--document-meta-size); }
+.body { min-width: 0; }
+.body section { padding-bottom: calc(40 * var(--u)); margin-bottom: calc(40 * var(--u)); border-bottom: 1px solid #dedede; scroll-margin-top: calc(130 * var(--u)); }
+.body h2 { margin: 0 0 var(--document-copy-gap); font: 400 var(--document-heading-size)/1.13 var(--font-display); letter-spacing: 0; text-wrap: pretty; overflow-wrap: break-word; }
+.body p { margin: 0 0 var(--document-copy-gap); color: #454545; font-size: var(--document-reading-size); line-height: 1.65; overflow-wrap: anywhere; }
+.body p:last-child { margin-bottom: 0; }
+.end { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--document-copy-gap); padding: calc(32 * var(--u)) var(--frame-padding); border-radius: var(--frame-radius); background: var(--sb-frame); font-size: var(--document-reading-size); }
+.end p { margin: 0; }
+.end a { color: var(--sb-accent); text-decoration: underline; text-underline-offset: .2em; }
+@media (max-width: 1279px) {
+  .main { --document-heading-size: clamp(25px, 6.3vw, 36px); --document-title-size: clamp(20px, 5vw, 25px); --document-lead-size: 16px; --document-reading-size: 18px; --document-body-size: 16px; --document-meta-size: 14px; --document-copy-gap: 16px; }
+  .layout { grid-template-columns: 1fr; gap: 32px; margin-top: 32px; }
+  .toc { position: static; max-height: none; overflow: visible; }
+  .toc nav { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px 24px; }
+  .body h2 { font-size: var(--document-title-size); }
+  .body section { margin-bottom: 28px; padding-bottom: 28px; scroll-margin-top: 110px; }
+}
+@media (min-width: 701px) and (max-width: 1279px) {
+  .main { --document-heading-size: calc(36px + var(--tablet-growth) * .00843); --document-title-size: calc(25px - var(--tablet-growth) * .00479); --document-lead-size: calc(16px + var(--tablet-growth) * .00613); --document-reading-size: calc(18px - var(--tablet-growth) * .000383); --document-meta-size: calc(14px - var(--tablet-growth) * .00268); --document-copy-gap: calc(16px + var(--tablet-growth) * .01226); }
+  .layout { margin-top: calc(32px + var(--tablet-growth) * .02452); }
+  .body h2 { font-size: var(--document-heading-size); }
+  .body section { margin-bottom: calc(28px + var(--tablet-growth) * .01303); padding-bottom: calc(28px + var(--tablet-growth) * .01303); }
+}
+@media (max-width: 700px) {
+  .layout { padding-inline: 12px; }
+  .toc nav { grid-template-columns: 1fr; }
+  .heading p { max-width: 38ch; }
+  .end { padding: 24px 18px; font-size: 16px; }
+}

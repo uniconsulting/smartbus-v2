@@ -1,0 +1,30 @@
+/* Secondary pages inherit the approved v2 frame and text axes from .sb-home.
+   These aliases serve imported document components without a second font setup. */
+body {
+  --font-brand-body: var(--font-garet), Arial, sans-serif;
+  --font-brand-display: var(--font-bicubik), Arial, sans-serif;
+  --heading-line-height: 1.09;
+  --body-line-height: 1.45;
+}
+.sb-home.sb-inner-page {
+  --hero-unit: var(--u);
+  --nav-origin-side: calc(var(--page-inset) + var(--frame-padding));
+  padding-bottom: 0;
+  min-height: 100dvh;
+}
+.sb-inner-page .sb-inner-main {
+  padding-top: calc(156 * var(--u));
+  padding-bottom: var(--section-gap);
+}
+.sb-inner-page .sb-footer { margin-top: 0; }
+.sb-inner-page .sb-inner-main > .sb-section + .sb-section { margin-top: var(--section-gap); }
+.sb-inner-page :is(a, button, input, textarea):focus-visible { outline: 2px solid var(--sb-accent); outline-offset: 5px; }
+.sb-inner-page .sb-topbar :is(a, button):focus-visible,
+.sb-inner-page .sb-footer :is(a, button):focus-visible { outline-color: #fff; }
+@media (max-width: 1279px) {
+  .sb-home.sb-inner-page { --hero-unit: 1px; }
+  .sb-inner-page .sb-inner-main { padding-top: 106px; }
+}
+@media (min-width: 701px) and (max-width: 1279px) {
+  .sb-inner-page .sb-inner-main { padding-top: calc(106px + var(--tablet-growth) * .056); }
+}

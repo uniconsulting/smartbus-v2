@@ -1,0 +1,12 @@
+Use case: ads-marketing.
+Asset type: broad photographic landing-page hero background, landscape approximately 1600x900.
+Primary request: A premium cinematic passenger transportation photograph for SmartBus, inspired by the reference landing page hero's golden-hour transport photography. This is a concept photograph, not documentation of the company's real fleet.
+Scene/backdrop: Moscow-region modern industrial business campus and a clean broad paved road, low glass and industrial buildings far behind, warm gold sunset sky with soft dramatic clouds.
+Subject: One large modern white European-style passenger coach with a subtle deep corporate purple lower-body stripe, large dark panoramic windows, foreground center-right, convincing three-quarter front view with front facing camera-left. Natural physically correct coach wheels, mirrors, windows and headlights. No trucks or airplanes.
+Style/medium: Photorealistic premium automotive commercial photograph, realistic lens, fine clean materials, refined believable details.
+Composition/framing: Wide 16:9 image. The entire main coach is clearly visible, occupying the right 65 percent, with roof below top quarter. Dark soft empty space across the left third and lower left for website heading; no objects competing with text. Road leads toward the bus and has natural subtle reflections. Camera near ground height.
+Lighting/mood: Warm cinematic golden backlight from far right, soft atmospheric light and amber sunset glow, dark charcoal-purple shadows at left. Elegant, reliable, calm.
+Color palette: White coach, deep purple subtle brand accent, dark charcoal, warm golden sky.
+Constraints: No logos, no readable text, no captions, no numbers, no watermark, no UI. Do not copy any webpage layout or embed interface. Do not imply any identifiable real vehicle brand. Generate only the full bleed photographic background.
+
+Generated with built-in image_gen, 2026-09-28. Concept image, not a photograph of the actual SmartBus fleet.

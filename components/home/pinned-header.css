@@ -1,0 +1,116 @@
+/* Keep the first glass fade continuous when the optional optical lens finishes loading. */
+@property --sb-header-glass-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.sb-home {
+  --nav-height: max(40px, calc(44 * var(--hero-unit)));
+  --nav-origin-top: calc(43 * var(--hero-unit));
+  --nav-origin-side: calc(var(--hero-edge) + 58 * var(--hero-unit));
+  --nav-dock-top: clamp(18px, calc(23 * var(--hero-unit)), 50px);
+  --nav-glass-pad: clamp(6px, calc(9 * var(--hero-unit)), 20px);
+}
+
+/* A single navigation layer sticks to the page. The slot reserves its original row in the Hero. */
+.sb-topbar-slot {
+  position: relative;
+  height: var(--nav-height);
+  flex: none;
+  pointer-events: none;
+}
+.sb-header-pin {
+  --u: var(--hero-unit);
+  --sb-header-glass-opacity: 0;
+  transition: --sb-header-glass-opacity .36s ease;
+  position: relative;
+  z-index: 90;
+  height: 0;
+  width: calc(100% - 2 * var(--nav-origin-side));
+  margin-inline: auto;
+  pointer-events: none;
+  color: #fff;
+}
+.sb-header-pin[data-ready] {
+  position: sticky;
+  top: calc(var(--nav-dock-top) - var(--nav-origin-top));
+}
+.sb-home .sb-header-pin .sb-topbar {
+  top: var(--nav-origin-top);
+  isolation: isolate;
+  width: 100%;
+  margin-inline: auto;
+  pointer-events: auto;
+  transition: opacity .26s ease, transform .36s ease;
+}
+.sb-header-glass, .sb-header-glass-rim {
+  position: absolute;
+  z-index: -1;
+  inset: calc(-1 * var(--nav-glass-pad)) calc(-20 * var(--u));
+  pointer-events: none;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: calc(24 * var(--u));
+  opacity: var(--sb-header-glass-opacity);
+}
+.sb-header-glass {
+  border-color: rgb(255 255 255 / 40%);
+  background:
+    linear-gradient(125deg, rgb(255 255 255 / 9%), transparent 33%, transparent 73%, rgb(255 255 255 / 5%)),
+    rgb(19 22 25 / 68%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+  backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 23%), inset 0 -1px 1px rgb(255 255 255 / 10%), 0 6px 22px rgb(24 20 30 / 13%);
+}
+/* A static feathered mask, beneath the tinted body lens, keeps the native large-
+   surface tier's extra blur at the rounded rim. No SVG or animated mask is used. */
+.sb-header-glass-rim {
+  --rim-stops: transparent calc(var(--glass-rim-radius) - var(--glass-rim-depth)),
+    #0002 calc(var(--glass-rim-radius) - .75 * var(--glass-rim-depth)),
+    #0008 calc(var(--glass-rim-radius) - .5 * var(--glass-rim-depth)),
+    #000d calc(var(--glass-rim-radius) - .25 * var(--glass-rim-depth)),
+    #000 var(--glass-rim-radius);
+  --edge-stops: #000, #000d 25%, #0008 50%, #0002 75%, transparent;
+  mask:
+    radial-gradient(circle at 100% 100%, var(--rim-stops)) top left / var(--glass-rim-radius) var(--glass-rim-radius) no-repeat,
+    radial-gradient(circle at 0 100%, var(--rim-stops)) top right / var(--glass-rim-radius) var(--glass-rim-radius) no-repeat,
+    radial-gradient(circle at 100% 0, var(--rim-stops)) bottom left / var(--glass-rim-radius) var(--glass-rim-radius) no-repeat,
+    radial-gradient(circle at 0 0, var(--rim-stops)) bottom right / var(--glass-rim-radius) var(--glass-rim-radius) no-repeat,
+    linear-gradient(to bottom, var(--edge-stops)) top center / calc(100% - 2 * var(--glass-rim-radius)) var(--glass-rim-depth) no-repeat,
+    linear-gradient(to top, var(--edge-stops)) bottom center / calc(100% - 2 * var(--glass-rim-radius)) var(--glass-rim-depth) no-repeat,
+    linear-gradient(to right, var(--edge-stops)) center left / var(--glass-rim-depth) calc(100% - 2 * var(--glass-rim-radius)) no-repeat,
+    linear-gradient(to left, var(--edge-stops)) center right / var(--glass-rim-depth) calc(100% - 2 * var(--glass-rim-radius)) no-repeat;
+}
+.sb-header-pin[data-docked] { --sb-header-glass-opacity: 1; }
+.sb-header-pin[data-docked] :is(.sb-header-anchors > a, .sb-topbar-actions > a, .sb-header-logo):not(:hover):not(:focus-visible) { opacity: .9; }
+/* Keyboard focus and the modal drawer keep access to the single navigation instance. */
+.sb-home .sb-header-pin[data-scroll-hidden]:not(:has(:focus-visible, dialog[open])) .sb-topbar {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(calc(-100% - var(--nav-dock-top) - var(--nav-glass-pad) - 2px));
+}
+.sb-home .sb-section:not(#top), .sb-home .sb-mob-alias {
+  scroll-margin-top: calc(var(--nav-dock-top) + var(--nav-height) + var(--nav-glass-pad) + max(10px, 12 * var(--hero-unit)));
+}
+
+@media (max-width: 1279px) {
+  .sb-home {
+    --nav-height: 44px;
+    --nav-origin-top: var(--hero-compact-top, 14px);
+    --nav-origin-side: calc(var(--page-inset) + var(--hero-compact-inset, clamp(17px, 5.5vw, 32px)));
+    --nav-dock-top: 16px;
+    --nav-glass-pad: 6px;
+  }
+  .sb-header-pin { --u: 1px; }
+  .sb-header-glass, .sb-header-glass-rim { inset-inline: -12px; border-radius: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sb-header-pin, .sb-home .sb-header-pin .sb-topbar { transition: none; }
+}
+
+/* Transparency preferences also apply before hydration. */
+@media (prefers-reduced-transparency: reduce) {
+  .sb-header-glass-rim { display: none; }
+  .sb-header-glass { background: #323232; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+}

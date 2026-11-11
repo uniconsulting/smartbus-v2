@@ -1,0 +1,65 @@
+/* Landscape folders scroll rather than compressing their type into four columns. */
+.folder {
+  --folder-back: #d5c7e1; --folder-front: #ede6f3; --folder-ink: #323232;
+  --folder-muted: #665d6c; --folder-line: #d1c4dd;
+  position: relative; display: grid; width: 100%; min-width: 0;
+  padding: 0 0 10px; border: 0; background: transparent;
+  color: var(--folder-ink); text-align: left;
+  font: inherit; font-family: var(--font-brand-body); cursor: pointer;
+  isolation: isolate; container-type: inline-size;
+}
+.folder[data-tone="plum"] { --folder-back: #555; --folder-front: #323232; --folder-ink: #fff; --folder-muted: #dedede; --folder-line: #707070; }
+.folder[data-tone="violet"] { --folder-back: #cbbbd9; --folder-front: #e7dfee; --folder-ink: #323232; --folder-muted: #655a6e; --folder-line: #c9bad6; }
+.folder[data-tone="gray"] { --folder-back: #c8c8c8; --folder-front: #ebebeb; --folder-ink: #323232; --folder-muted: #626262; --folder-line: #c8c8c8; }
+.stage { position: relative; display: grid; min-width: 0; min-height: 80cqw; perspective: 1400px; }
+.back { position: absolute; inset: 1px; }
+.back svg { display: block; width: 100%; height: auto; fill: var(--folder-back); }
+.back::after {
+  content: ""; position: absolute; inset: calc(16.471cqw - 2px) 0 0;
+  background: var(--folder-back); border-radius: 0 0 calc(6.471cqw - 1px) calc(6.471cqw - 1px);
+}
+.shadow { position: absolute; left: 9%; right: 9%; height: 16%; bottom: -2%; background: #3232321a; border-radius: 50%; filter: blur(14px); }
+.sheet { position: absolute; left: 9%; top: 12cqw; width: 82%; height: 72%; padding: 7%; overflow: hidden; border: 1px solid #e0e0e0; border-radius: 13px; background: #fff; box-shadow: 0 6px 20px #3232320c; transition: transform .55s cubic-bezier(.2,.8,.2,1); transform-origin: 50% 100%; }
+.sheetBack { transform: rotate(-5deg) translateY(-7px); background: #f3f3f3; }
+.sheetTop { transform: rotate(3deg); }
+.sheet img { display: block; width: 46%; height: auto; margin-bottom: 11%; filter: grayscale(1) brightness(.48); }
+.sheet i { display: block; height: 4px; margin: 8px 0; width: 92%; border-radius: 3px; background: #dedede; }
+.sheet i:nth-last-child(2) { width: 64%; }
+.sheet i:last-child { width: 77%; }
+.front {
+  --cover-inset: max(22px, 7.5cqw);
+  --cover-radius: 6.471cqw;
+  position: relative; display: flex; min-width: 0;
+  padding: calc(26cqw + max(12px, 12 * var(--document-unit))) var(--cover-inset) var(--cover-inset);
+  transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.2,.8,.2,1);
+}
+.front > svg { position: absolute; inset: 0 0 auto; width: 100%; height: 26cqw; fill: var(--folder-front); }
+.front::before {
+  content: ""; position: absolute; inset: calc(26cqw - 1px) 0 0;
+  background: var(--folder-front); border-radius: 0 0 var(--cover-radius) var(--cover-radius);
+}
+.copy { position: relative; display: flex; flex: 1; min-width: 0; flex-direction: column; }
+.copy strong { display: block; min-height: 2lh; white-space: pre-line; font-size: var(--document-title-size); font-weight: 700; line-height: var(--heading-line-height); letter-spacing: 0; overflow-wrap: anywhere; }
+.description { display: block; min-height: 2lh; white-space: pre-line; margin-top: var(--document-copy-gap); color: var(--folder-muted); font-size: var(--document-body-size); line-height: var(--body-line-height); }
+.meta {
+  display: flex; align-items: flex-end; margin-top: auto;
+  min-height: calc(max(32px, 34 * var(--document-unit)) + var(--document-copy-gap));
+  padding-top: var(--document-copy-gap); padding-right: max(42px, calc(44 * var(--document-unit)));
+  color: var(--folder-muted); font-size: var(--document-meta-size); line-height: var(--body-line-height);
+}
+.open {
+  position: absolute; right: var(--cover-inset); bottom: var(--cover-inset);
+  display: grid; place-items: center; width: max(32px, calc(34 * var(--document-unit))); height: max(32px, calc(34 * var(--document-unit)));
+  border-radius: 50%; background: #ffffff1f; border: 1px solid var(--folder-line);
+}
+@media (any-hover: hover) and (any-pointer: fine) {
+  .folder:hover .front, .folder:focus-visible .front { transform: rotateX(-8deg); }
+  .folder:hover .sheetBack, .folder:focus-visible .sheetBack { transform: rotate(-7deg) translateY(-20px); }
+  .folder:hover .sheetTop, .folder:focus-visible .sheetTop { transform: rotate(4deg) translateY(-26px); }
+}
+.folder:focus-visible { border-radius: 24px; outline-offset: 4px; }
+@media (max-width: 700px) {
+  .front { --cover-inset: max(20px, 6cqw); }
+  .description { min-height: 3lh; white-space: normal; text-wrap: pretty; }
+}
+@media (prefers-reduced-motion: reduce) { .folder *, .folder:hover *, .folder:focus-visible * { transition: none; transform: none; } }

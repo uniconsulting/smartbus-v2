@@ -1,0 +1,174 @@
+.dialog { position: fixed; inset: 10px; width: calc(100vw - 20px); height: calc(100svh - 20px); max-width: none; max-height: none; margin: 0; padding: 0; border: 1px solid #d6d6d6; border-radius: 24px; background: #e8e8e8; color: var(--ink); box-shadow: 0 28px 100px #32323233; overflow: hidden; }
+.dialog::backdrop { background: #6363639e; backdrop-filter: blur(7px); }
+.shell { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.toolbar { display: flex; flex: none; align-items: center; justify-content: flex-end; gap: 20px; min-height: 64px; padding: 12px 20px; border-bottom: 1px solid #d8d8d8; background: #fff; }
+.actions { display: flex; flex: none; align-items: center; gap: 10px; }
+.iconButton { display: inline-grid; flex: none; place-items: center; width: 38px; height: 38px; border: 1px solid transparent; border-radius: 12px; background: transparent; color: var(--purple-dark); }
+.iconButton:hover:not(:disabled), .zoomReset:hover { background: #e9e9e9; }
+.iconButton:disabled { opacity: .3; cursor: default; }
+.close { margin-left: 8px; background: #efefef; }
+.zoom { display: flex; align-items: center; border: 1px solid #dedede; border-radius: 13px; }
+.zoom .iconButton { width: 32px; height: 34px; }
+.zoomReset { min-width: 54px; height: 34px; padding: 0 4px; border: 0; background: transparent; border-radius: 8px; color: #4c4c4c; font-size: 11px; font-variant-numeric: tabular-nums; }
+.pageCount { padding: 0 8px; font-size: 11px; color: #6c6c6c; white-space: nowrap; }
+.download { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; padding: 0 13px; border-radius: 12px; background: var(--purple); color: #fff; font-size: 11px; font-weight: 600; }
+.download:hover { background: #5d5d5d; }
+.workspace { display: flex; flex: 1; min-height: 0; position: relative; }
+.sidebar { flex: 0 0 238px; width: 238px; padding: 28px 20px; overflow-y: auto; border-right: 1px solid #d8d8d8; background: #f7f7f7; }
+.sidebar[hidden] { display: none; }
+.sidebar > strong { font-size: 13px; font-weight: 600; }
+.sidebar nav { display: grid; gap: 4px; margin: 18px -8px 24px; }
+.sidebar nav button { padding: 9px 8px; border: 0; border-radius: 8px; background: transparent; color: #666666; font-size: 11px; line-height: 1.5; text-align: left; }
+.sidebar nav button:hover, .sidebar nav button:focus-visible { background: #e2e2e2; color: var(--purple); }
+.sidebar small { color: #878787; font-size: 10px; }
+.readerViewport, .pdfViewport { flex: 1; min-width: 0; overflow: auto; overscroll-behavior: contain; scrollbar-color: #adadad #eaeaea; }
+.readerViewport { padding: 28px 32px; }
+.paper { width: min(100%, 860px); margin: 0 auto; padding: clamp(28px, 4.8vw, 68px); border: 1px solid #dfdfdf; border-radius: 4px; background: #fff; box-shadow: 0 4px 24px #2828280a; font-size: calc(15px * var(--reader-scale)); overflow-wrap: anywhere; }
+.paperBrand { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 28px; border-bottom: 1px solid #e2e2e2; }
+.paperBrand img { display: block; flex-shrink: 0; width: 140px; height: auto; }
+.paperBrand span { flex-shrink: 0; white-space: nowrap; overflow-wrap: normal; font-size: 10px; line-height: 1.5; color: #7e7e7e; text-align: right; }
+.paper h1 { margin: 34px 0 18px; font-size: 2.05em; line-height: 1.2; letter-spacing: -.045em; font-weight: 600; }
+.paper .subtitle { color: #777777; font-size: 1.03em; line-height: 1.7; margin: 0 0 32px; }
+.paper section { margin-top: 32px; padding-top: 26px; border-top: 1px solid #eaeaea; scroll-margin-top: 24px; }
+.paper section h2 { margin: 0 0 18px; color: var(--purple-dark); font-size: 1.32em; line-height: 1.4; letter-spacing: -.02em; font-weight: 600; }
+.paper section p { margin: 0 0 17px; color: #565656; line-height: 1.8; white-space: pre-line; }
+.paper section p:last-child { margin-bottom: 0; }
+.numbered { font-variant-numeric: tabular-nums; }
+.paperFooter { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: 38px; padding-top: 24px; border-top: 1px solid #e1e1e1; font-size: 12px; color: #7f7f7f; }
+.paperFooter a { display: inline-flex; align-items: center; gap: 12px; color: var(--purple); }
+.readerEnd { display: flex; justify-content: space-between; gap: 20px; max-width: 860px; margin: 22px auto 0; }
+.readerEnd button { display: inline-flex; align-items: center; gap: 8px; border: 0; padding: 10px 0; background: transparent; color: #5b5b5b; font-size: 11px; }
+.request .button { gap: 12px; margin-top: 10px; }
+.request > a { display: block; width: fit-content; margin-top: 22px; padding-bottom: 3px; border-bottom: 1px solid #b8b8b8; color: var(--purple); font-size: 13px; }
+.loadState { display: flex; min-height: 100%; align-items: center; justify-content: center; flex-direction: column; gap: 14px; padding: 40px; color: #6a6a6a; font-size: 13px; text-align: center; }
+.loadState p { line-height: 1.6; margin: 0; }
+.loadState button, .loadState a { padding: 10px 18px; border: 1px solid #bcbcbc; border-radius: 10px; color: var(--purple); background: white; }
+.pdfStack { display: flex; flex-direction: column; align-items: center; gap: 24px; min-width: 100%; width: max-content; padding: 24px 32px; }
+.pdfPage { position: relative; flex: none; background: white; box-shadow: 0 4px 24px #28282816; }
+.pdfPage canvas { display: block; max-width: none; }
+.textLayer { --min-font-size: 1; --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size)); --min-font-size-inv: calc(1 / var(--min-font-size)); position: absolute; inset: 0; overflow: clip; color-scheme: only light; text-align: initial; line-height: 1; letter-spacing: normal; word-spacing: normal; text-size-adjust: none; forced-color-adjust: none; transform-origin: 0 0; caret-color: CanvasText; }
+.textLayer :is(span, br) { position: absolute; color: transparent; white-space: pre; cursor: text; transform-origin: 0 0; user-select: text; }
+.textLayer > :not(:global(.markedContent)), .textLayer :global(.markedContent) span:not(:global(.markedContent)) { z-index: 1; --font-height: 0; --scale-x: 1; --rotate: 0deg; font-size: calc(var(--text-scale-factor) * var(--font-height)); transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv)); }
+.textLayer :global(.markedContent) { display: contents; }
+.textLayer ::selection { background: #8c8c8c66; color: transparent; }
+@media (max-width: 1000px) { .sidebar[data-open="true"] { position: absolute; z-index: 3; inset: 0 auto 0 0; width: min(300px, 82vw); box-shadow: 15px 0 30px #32323220; } .toolbar { gap: 12px; padding: 10px 14px; } .actions { gap: 5px; } }
+@media (max-width: 700px) {
+  .dialog { inset: 0; width: 100vw; height: 100svh; border: 0; border-radius: 0; }
+  .toolbar { flex-wrap: wrap; gap: 8px; padding: 12px; }
+  .actions { flex-wrap: wrap; justify-content: flex-start; flex: 1 0 100%; padding-right: 46px; }
+  .close { position: absolute; right: 10px; top: 12px; margin: 0; width: 36px; height: 36px; }
+  .readerViewport { padding: 14px 10px; }
+  .paper { padding: 25px 20px; font-size: calc(14px * var(--reader-scale)); }
+  .paperBrand { align-items: start; gap: 16px; padding-bottom: 22px; }
+  .paperBrand img { width: 108px; }
+  .paperBrand span { font-size: 9px; }
+  .paper h1 { margin-top: 25px; font-size: 1.85em; }
+  .paper section { margin-top: 26px; padding-top: 22px; }
+  .paper section h2 { font-size: 1.25em; }
+  .download { padding: 0 10px; }
+  .download span { display: none; }
+  .pageCount { padding: 0 4px; }
+  .readerEnd { gap: 12px; }
+  .readerEnd button { font-size: 10px; }
+  .pdfStack { padding: 16px 12px; }
+}
+
+.dialog { background: #ebebeb; border-color: #d1d1d1; box-shadow: 0 28px 100px #32323233; font-family: var(--font-brand-body); }
+.dialog::backdrop { background: #32323288; }
+.paperBrand img { filter: grayscale(1) brightness(.48); }
+.paper h1 { font-family: var(--font-brand-display); font-size: 1.8em; font-weight: 400; letter-spacing: -.025em; }
+
+.paperBrand span, .pageCount, .paperFooter { line-height: var(--body-line-height); }
+
+/* Use the services/fleet type scale for the reader as well as its folder. */
+.dialog {
+  --document-unit: clamp(.48px, .0694444444vw, 2.666667px);
+  --document-heading-size: max(34px, calc(46 * var(--document-unit)));
+  --document-title-size: max(22px, calc(25 * var(--document-unit)));
+  --document-lead-size: max(18px, calc(22 * var(--document-unit)));
+  --document-reading-size: max(18px, calc(20 * var(--document-unit)));
+  --document-body-size: max(16px, calc(16 * var(--document-unit)));
+  --document-meta-size: max(14px, calc(14 * var(--document-unit)));
+  --document-copy-gap: calc(26 * var(--document-unit));
+  letter-spacing: 0;
+}
+
+.sidebar {
+  flex-basis: clamp(260px, 23vw, 420px);
+  width: clamp(260px, 23vw, 420px);
+  padding: max(24px, calc(32 * var(--document-unit))) max(20px, calc(24 * var(--document-unit)));
+}
+.sidebar > strong { font-size: var(--document-title-size); font-weight: 700; line-height: var(--heading-line-height); }
+.sidebar nav { gap: 8px; margin-top: var(--document-copy-gap); }
+.sidebar nav button { font-size: var(--document-reading-size); line-height: var(--body-line-height); letter-spacing: 0; overflow-wrap: anywhere; }
+.sidebar small { font-size: var(--document-meta-size); }
+.paper {
+  width: min(100%, calc(1180 * var(--document-unit)));
+  padding: max(28px, calc(58 * var(--document-unit)));
+  font-size: calc(var(--document-reading-size) * var(--reader-scale));
+  line-height: var(--body-line-height);
+  letter-spacing: 0;
+}
+.paperBrand { padding-bottom: var(--document-copy-gap); }
+.paperBrand span { font-size: var(--document-meta-size); }
+.paper h1 {
+  margin: max(28px, calc(40 * var(--document-unit))) 0 var(--document-copy-gap);
+  font-family: var(--font-brand-display);
+  font-size: calc(var(--document-heading-size) * var(--reader-scale));
+  font-weight: 400;
+  line-height: var(--heading-line-height);
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+.paper .subtitle { margin: 0 0 max(28px, calc(40 * var(--document-unit))); font-size: calc(var(--document-lead-size) * var(--reader-scale)); line-height: var(--body-line-height); }
+.paper section { margin-top: max(28px, calc(40 * var(--document-unit))); padding-top: max(28px, calc(40 * var(--document-unit))); }
+.paper section h2 { margin: 0 0 var(--document-copy-gap); font-family: var(--font-brand-body); font-size: calc(var(--document-title-size) * var(--reader-scale)); font-weight: 700; line-height: var(--heading-line-height); letter-spacing: 0; text-wrap: pretty; }
+.paper section p { max-width: 75ch; margin: 0 0 var(--document-copy-gap); font-size: inherit; line-height: var(--body-line-height); }
+.paperFooter { margin-top: max(28px, calc(40 * var(--document-unit))); padding-top: var(--document-copy-gap); font-size: var(--document-body-size); }
+.readerEnd { max-width: calc(1180 * var(--document-unit)); flex-wrap: wrap; }
+.readerEnd button { font-size: var(--document-body-size); }
+.request > button { margin-top: 4px; gap: 10px; font-family: var(--font-brand-body); font-size: var(--document-body-size); }
+.request > a { font-size: var(--document-reading-size); }
+.zoomReset, .pageCount { font-size: var(--document-meta-size); }
+.download, .loadState { font-size: var(--document-body-size); }
+.iconButton { width: 44px; height: 44px; }
+.zoom .iconButton { width: 36px; height: 40px; }
+.zoomReset { height: 40px; }
+.download { min-height: 44px; }
+
+@media (max-width: 1000px) {
+  .sidebar[data-open="true"] { width: min(340px, 86vw); }
+}
+
+@media (max-width: 700px) {
+  .dialog {
+    --document-unit: 1px;
+    --document-heading-size: clamp(25px, 6.3vw, 36px);
+    --document-title-size: clamp(20px, 5vw, 25px);
+    --document-lead-size: 16px;
+    --document-reading-size: 18px;
+    --document-body-size: 16px;
+    --document-meta-size: 14px;
+    --document-copy-gap: 12px;
+  }
+  .paper { width: 100%; padding: 24px 18px; }
+  .paperBrand { flex-wrap: wrap; gap: 12px; }
+  .paperBrand span { max-width: 100%; text-align: left; }
+  .paper h1 { margin-top: 28px; }
+  .paper section { margin-top: 28px; padding-top: 28px; }
+  .readerEnd { gap: 14px; }
+  .readerEnd button { max-width: 100%; text-align: left; }
+  .sidebar { padding: 24px 18px; }
+  .close { width: 40px; height: 40px; }
+}
+
+/* The imported viewer uses the same installed web fonts and touch target floor. */
+.dialog { --ink: #0e0e0e; font-family: var(--font-brand-body); }
+.iconButton, .zoom .iconButton, .close { width: 44px; height: 44px; }
+.zoomReset, .download { min-height: 44px; height: auto; }
+.sidebar nav button, .readerEnd button { min-height: 44px; }
+@media (max-width: 700px) {
+  .toolbar { padding-right: 58px; }
+  .actions { padding-right: 0; }
+  .paperBrand { flex-wrap: wrap; }
+}

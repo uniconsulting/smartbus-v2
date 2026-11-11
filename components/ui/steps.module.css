@@ -1,0 +1,35 @@
+.root { margin-top: 56px; }
+.list { display: flex; width: 100%; }
+.item { position: relative; flex: 1; min-width: 0; }
+.trigger { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 24px; width: 100%; padding: 0 22px; border: 0; border-radius: 12px; background: transparent; color: inherit; font: inherit; text-align: center; cursor: pointer; }
+.trigger:focus-visible { outline: 2px solid #dcc0ef; outline-offset: 9px; }
+.indicator { display: grid; place-items: center; flex-shrink: 0; width: 52px; height: 52px; border: 1px solid #826398; border-radius: 50%; background: var(--purple-dark); color: #c4b0d2; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.indicator[data-current] { border-color: #dfc4f2; background: #dfc4f2; color: #392047; box-shadow: 0 0 0 7px #dfc4f20c; }
+.indicator[data-complete] { border-color: #b58acf; background: #714690; color: white; }
+.trigger:hover .indicator[data-incomplete] { border-color: #d0afe5; color: white; }
+.check { display: none; }
+.indicator[data-complete] .number { display: none; }
+.indicator[data-complete] .check { display: block; }
+.copy { display: flex; flex-direction: column; align-items: center; gap: 13px; width: 100%; }
+.title { display: block; min-height: 2.5em; max-width: 21ch; color: #f4edf8; font-size: clamp(18px, 1.65vw, 23px); font-weight: 500; line-height: 1.25; letter-spacing: -.035em; text-wrap: balance; }
+.description { display: block; max-width: 30ch; color: #bfaecb; font-size: 12px; font-weight: 400; line-height: 1.65; text-wrap: pretty; }
+.trigger[data-current] .description { color: #e0d2e9; }
+.separator { position: absolute; top: 25px; left: calc(50% + 36px); width: calc(100% - 72px); height: 1px; background: #624971; transition: background .2s ease; }
+.separator[data-complete] { background: #bc93d5; }
+
+@media (max-width: 700px) {
+  .root { margin-top: 40px; }
+  .list { flex-direction: column; gap: 0; }
+  .item { flex: none; padding-bottom: 34px; }
+  .item:last-child { padding-bottom: 0; }
+  .trigger { flex-direction: row; align-items: flex-start; gap: 22px; padding: 0; text-align: left; }
+  .indicator { width: 42px; height: 42px; font-size: 12px; }
+  .copy { align-items: flex-start; gap: 10px; padding-top: 7px; }
+  .title { min-height: 0; max-width: 22ch; font-size: 21px; text-wrap: pretty; }
+  .description { max-width: 32ch; }
+  .separator { top: 51px; bottom: 9px; left: 20px; width: 1px; height: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator, .separator { transition: none; }
+}
